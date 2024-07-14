@@ -7,3 +7,6 @@
 [submodule "ToonCrafter"]
 	path = ToonCrafter
 	url = https://github.com/StableDraw/ToonCrafter
+[submodule "StableAudio"]
+	path = StableAudio
+	url = https://github.com/StableDraw/StableAudio
