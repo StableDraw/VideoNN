@@ -1,0 +1,9 @@
+[submodule "AnimateDiffLightning"]
+	path = AnimateDiffLightning
+	url = https://github.com/StableDraw/AnimateDiffLightning
+[submodule "InternLMChat"]
+	path = InternLMChat
+	url = https://github.com/StableDraw/InternLMChat
+[submodule "ToonCrafter"]
+	path = ToonCrafter
+	url = https://github.com/StableDraw/ToonCrafter
