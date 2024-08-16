@@ -1,4 +1,4 @@
-import random
+from VideoEditor.video_editor import VideoEditor
 
 class ChatBot:
     '''
@@ -16,10 +16,10 @@ class ChatBot:
         '''
         self.is_started = False #Была ли начата беседа
 
-    def text_to_text(self, prompt: str) -> str:
+    def text_to_text(self, prompt: str, id: str) -> str:
         '''
         Метод, генерирующий текстовый ответ на текстовый запрос
-        Принимает текст
+        Принимает текст и строковый id идентификатор пользователя
         Возвращает текст
         '''
 
@@ -68,9 +68,8 @@ def cut_media(media: bytes, cut_list: list) -> bytes:
     Возвращает обрезанное медиа (видео или аудио) в виде строки байт
     '''
 
-    files = ["StableAudio\\output.wav", "AnimateDiffLightning\\output.mp4"]
-
-    with open(files[random.randint(0, 1)], "rb") as f:
-        output = f.read()
+    ve = VideoEditor()
+    
+    output = ve.cut_media(media = media, cut_list = cut_list) #Обрезаем медиа
 
     return output

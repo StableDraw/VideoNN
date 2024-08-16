@@ -10,3 +10,6 @@
 [submodule "StableAudio"]
 	path = StableAudio
 	url = https://github.com/StableDraw/StableAudio
+[submodule "VideoEditor"]
+	path = VideoEditor
+	url = https://github.com/StableDraw/VideoEditor
