@@ -1,20 +1,26 @@
 from VideoEditor.video_editor import VideoEditor
+from StableAudio.stable_audio import StableAudio
+
+
 
 class ChatBot:
     '''
     Чат-бот: нейронка, способная генерировать текстовые ответы на текстовые сообщения пользователя, учитывая контекст беседы
     '''
+
     def __init__(self):
         '''
         Инициализация класса нейронки для начала общения
         '''
         pass
 
+
     def reset(self):
         '''
         Метод, обновляющий беседу
         '''
         self.is_started = False #Была ли начата беседа
+
 
     def text_to_text(self, prompt: str, id: str) -> str:
         '''
@@ -35,6 +41,7 @@ class ChatBot:
         return text
     
 
+
 def text_to_audio(prompt: str) -> bytes:
     '''
     Генерация аудио по тексту
@@ -42,10 +49,12 @@ def text_to_audio(prompt: str) -> bytes:
     Возвращает waw аудиофайл в виде строки байт
     '''
 
-    with open("StableAudio\\output.wav", "rb") as f:
-        output = f.read()
+    sa = StableAudio()
+
+    output = sa.text_to_audio(prompt = prompt, duration = 30) #Генерируем аудио по тексту
 
     return output
+
 
 
 def text_to_video(prompt: str, is_long: bool = False) -> bytes:
@@ -59,6 +68,7 @@ def text_to_video(prompt: str, is_long: bool = False) -> bytes:
         output = f.read()
 
     return output
+
 
 
 def cut_media(media: bytes, cut_list: list) -> bytes:
