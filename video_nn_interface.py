@@ -1,5 +1,6 @@
 from VideoEditor.video_editor import VideoEditor
 from StableAudio.stable_audio import StableAudio
+from AnimateDiffLightning.animate_diff_lightning import external_text_to_video
 
 
 
@@ -64,8 +65,8 @@ def text_to_video(prompt: str, is_long: bool = False) -> bytes:
     Возвращает mp4 видеофайл в виде строки байт
     '''
 
-    with open("AnimateDiffLightning\\output.mp4", "rb") as f:
-        output = f.read()
+    if not is_long: #Если это обычная генерация видео
+        output = external_text_to_video(prompt = prompt)
 
     return output
 
