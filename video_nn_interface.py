@@ -2,6 +2,7 @@ from VideoEditor.video_editor import VideoEditor
 from StableAudio.stable_audio import StableAudio
 from AnimateDiffLightning.animate_diff_lightning import external_text_to_video
 from InternLMChat.internlm import InternLMChat, reset_history, get_history
+from long_video_gen import text_to_long_video
 
 
 class ChatBot():
@@ -69,6 +70,8 @@ def text_to_video(prompt: str, is_long: bool = False) -> bytes:
 
     if not is_long: #Если это обычная генерация видео
         output = external_text_to_video(prompt = prompt)
+    else: #Генерация длинного видео
+        output = text_to_long_video(prompt = prompt)
 
     return output
 
