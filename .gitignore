@@ -14,3 +14,4 @@ Stable_draw_classifier_v1/Dataset_350_v2
 Stable_draw_classifier_v1/Dataset_v2
 *.bin
 *.git
+/python-shit/__pycache__

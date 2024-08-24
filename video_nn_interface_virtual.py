@@ -43,11 +43,11 @@ class ChatBot:
         '''
 
         if self.counter % 2 == 0:
-            response = "--User message " + str(counter)
+            response = "--User message " + str(self.counter)
         else:
-            response = "--NN message " + str(counter)
+            response = "--NN message " + str(self.counter)
 
-        counter += 1
+        self.counter += 1
         self.history.append(response)
 
         return response
@@ -61,7 +61,7 @@ def text_to_audio(prompt: str) -> bytes:
     Возвращает wav аудиофайл в виде строки байт
     '''
 
-    with open("StableAudio\\output.wav", "rb") as f:
+    with open("audio.wav", "rb") as f:
         output = f.read()
 
     return output
@@ -74,7 +74,7 @@ def text_to_video(prompt: str, is_long: bool = False) -> bytes:
     Возвращает mp4 видеофайл в виде строки байт
     '''
 
-    with open("AnimateDiffLightning\\output.mp4", "rb") as f:
+    with open("video.mp4", "rb") as f:
         output = f.read()
 
     return output
@@ -87,7 +87,7 @@ def cut_media(media: bytes, cut_list: list) -> bytes:
     Возвращает обрезанное медиа (видео или аудио) в виде строки байт
     '''
 
-    files = ["StableAudio\\output.wav", "AnimateDiffLightning\\output.mp4"]
+    files = ["audio.wav", "video.mp4"]
 
     with open(files[random.randint(0, 1)], "rb") as f:
         output = f.read()

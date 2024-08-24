@@ -1,0 +1,1 @@
+python -m RabbitService.neural_rabbit_service
