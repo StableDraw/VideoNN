@@ -39,5 +39,5 @@ class RabbitConsumerService :
 
       # if we caught different exchange, we going to send it back
       print(f'NACK: exchange "{method.exchange}" is not support by this consumer\n')
-      self.channel.basic_nack(delivery_tag=method.delivery_tag)
+      self.channel.basic_reject(delivery_tag=method.delivery_tag)
       return
