@@ -27,9 +27,9 @@ def main():
         "StableDraw.Contracts.NeuralChatContracts.Replies:ITextToVideoReply",
         video_editor_consumer.get_text_to_video_response),
 
-        Consumer("StableDraw.Contracts.NeuralChatContracts.Requests:ITextToAudioRequest",
-        "StableDraw.Contracts.NeuralChatContracts.Replies:ITextToAudioReply",
-        video_editor_consumer.get_text_to_audio_response),
+        #Consumer("StableDraw.Contracts.NeuralChatContracts.Requests:ITextToAudioRequest",
+        #"StableDraw.Contracts.NeuralChatContracts.Replies:ITextToAudioReply",
+        #video_editor_consumer.get_text_to_audio_response),
 
         Consumer("StableDraw.Contracts.NeuralChatContracts.Requests:ICutMediaRequest",
         "StableDraw.Contracts.NeuralChatContracts.Replies:ICutMediaReply",
@@ -38,7 +38,7 @@ def main():
 
     rabbitService = RabbitConsumerService(channel, consumers)
 
-    channel.basic_consume(queue='neural-chat-state',
+    channel.basic_consume(queue='neural_chat_consumer',
                         on_message_callback=rabbitService.rabbit_message_callback)
 
     print(' [*] Waiting for messages. To exit press CTRL+C')
