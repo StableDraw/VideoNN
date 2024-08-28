@@ -35,9 +35,10 @@ class RabbitConsumerService :
             response = self.generate_responce(json.loads(body), consumer.response_function(data['message']), consumer.exchange_output)
             self.channel.basic_publish(exchange=consumer.exchange_output, routing_key='', body=response)
             print(f"OK: {consumer.exchange_output}\n")
+            self.channel.basic_ack(delivery_tag=method.delivery_tag)
             return
 
       # if we caught different exchange, we going to send it back
       print(f'NACK: exchange "{method.exchange}" is not support by this consumer\n')
-      self.channel.basic_reject(delivery_tag=method.delivery_tag)
+      self.channel.basic_nack(delivery_tag=method.delivery_tag)
       return
