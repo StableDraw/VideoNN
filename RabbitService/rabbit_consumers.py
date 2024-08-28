@@ -28,15 +28,20 @@ class RabbitConsumerService :
       # print(f"\n\n{ch}\n\n")
       print(f"\n\n{method}\n\n")
       # print(f"\n\n{properties}\n\n")
-
+   
       for consumer in self.consumers:
          if consumer.exchange_input == method.exchange:     
-            data = json.loads(body)
-            response = self.generate_responce(json.loads(body), consumer.response_function(data['message']), consumer.exchange_output)
-            self.channel.basic_publish(exchange=consumer.exchange_output, routing_key='', body=response)
-            print(f"OK: {consumer.exchange_output}\n")
-            self.channel.basic_ack(delivery_tag=method.delivery_tag)
-            return
+            try:
+               data = json.loads(body)
+               response = self.generate_responce(json.loads(body), consumer.response_function(data['message']), consumer.exchange_output)
+               self.channel.basic_publish(exchange=consumer.exchange_output, routing_key='', body=response)
+               print(f"OK: {consumer.exchange_output}\n")
+               self.channel.basic_ack(delivery_tag=method.delivery_tag)
+               return
+            except:     
+               print(f'ERROR ACK: exchange "{method.exchange}"\n')
+               self.channel.basic_ack(delivery_tag=method.delivery_tag)
+               return
 
       # if we caught different exchange, we going to send it back
       print(f'NACK: exchange "{method.exchange}" is not support by this consumer\n')

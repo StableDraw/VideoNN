@@ -27,9 +27,9 @@ def main():
         "StableDraw.Contracts.NeuralChatContracts.Replies:ITextToVideoReply",
         video_editor_consumer.get_text_to_video_response),
 
-        #Consumer("StableDraw.Contracts.NeuralChatContracts.Requests:ITextToAudioRequest",
-        #"StableDraw.Contracts.NeuralChatContracts.Replies:ITextToAudioReply",
-        #video_editor_consumer.get_text_to_audio_response),
+        Consumer("StableDraw.Contracts.NeuralChatContracts.Requests:ITextToAudioRequest",
+        "StableDraw.Contracts.NeuralChatContracts.Replies:ITextToAudioReply",
+        video_editor_consumer.get_text_to_audio_response),
 
         Consumer("StableDraw.Contracts.NeuralChatContracts.Requests:ICutMediaRequest",
         "StableDraw.Contracts.NeuralChatContracts.Replies:ICutMediaReply",
