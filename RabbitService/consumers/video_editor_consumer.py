@@ -25,11 +25,13 @@ class VideoEditorConsumer:
         return response
 
     def get_cut_media_response(self, message):
-        print(message)
+        #print(message)
+
+        receivedMedia = base64.b64decode(message['media'].encode())
 
         response = {
             "orderId": message['orderId'],
-            "media": cut_media(message['media'], message['cuts']),
+            "media": base64.b64encode(cut_media(receivedMedia, message['cuts'])).decode('utf-8'),
             "errorMsg": message['errorMsg']
         }
 
